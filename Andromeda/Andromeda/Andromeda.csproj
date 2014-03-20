@@ -82,7 +82,9 @@
     <Compile Include="AndromedaMain.cs" />
     <Compile Include="Resources.cs" />
     <Compile Include="Screen\GameScreen.cs" />
-    <Compile Include="Screen\Screen.cs" />
+    <Compile Include="Screen\MainScreen.cs" />
+    <Compile Include="Screen\PauseScreen.cs" />
+    <Compile Include="Screen\ScreenBase.cs" />
     <Compile Include="Screen\ScreenManager.cs" />
   </ItemGroup>
   <ItemGroup>

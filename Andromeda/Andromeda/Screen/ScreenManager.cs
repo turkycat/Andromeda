@@ -10,20 +10,32 @@ namespace Andromeda.Screen
     public class ScreenManager : Microsoft.Xna.Framework.DrawableGameComponent
     {
         //a reference to the currently active screen
-        private Screen activeScreen;
+        private ScreenBase activeScreen;
 
         //a reference to the camera object which will control the focus element of our screens.
         private Camera camera;
 
-        private Dictionary<string, Screen> screens;
+        //a dictionary of references to the various screens used within the game
+        private Dictionary<string, ScreenBase> screens;
 
 
         public ScreenManager( Game game ) : base( game )
         {
-            this.screens = new Dictionary<string,Screen>();
-            this.screens.Add( "gamescreen", new GameScreen( game ) );
+            this.screens = new Dictionary<string,ScreenBase>();
             camera = new Camera( game.GraphicsDevice );
-            SetActiveScreen( "gamescreen" );
+        }
+
+
+        /**
+         * initializes the ScreenManager and it's various screens
+         *  - note: requires content to be loaded so that various screens can initialize themselves properly
+         */
+        public void Init()
+        {
+            screens.Add( "main", new MainScreen( this.Game ) );
+            screens.Add( "game", new GameScreen( this.Game ) );
+            screens.Add( "pause", new PauseScreen( this.Game ) );
+            SetActiveScreen( "game" );
         }
 
 
@@ -33,7 +45,7 @@ namespace Andromeda.Screen
         public void SetActiveScreen( string key )
         {
             if ( key == null || !screens.ContainsKey( key ) ) return;
-            Screen requested = screens[key];
+            ScreenBase requested = screens[key];
 
             //remove all entities from the current screen, if there is one, from the physics manager
             if ( activeScreen != null )

@@ -21,7 +21,12 @@ namespace Andromeda
 
         //the screen manager controls what the user sees
         private ScreenManager screenManager;
+
+        //the physics engine manages the physics
         private Space physicsEngine;
+
+        //reference to the game
+        private Game game;
 
 
 
@@ -52,26 +57,27 @@ namespace Andromeda
         //-----------------------------------public methods
 
         /**
-         * Set the ScreenManager object so that the state class can control it.
+         * initializes the GameState, guaranteeing encapsulation of the physics engine and screen manager
          */
-        public void SetScreenManager( ScreenManager provided )
+        public void Initialize( Game game )
         {
-            if ( screenManager == null )
-            {
-                screenManager = provided;
-            }
-        }
+            if ( game == null ) throw new InvalidOperationException();
+            this.game = game;
 
-
-        /**
-         * Set the physics engine object so that the state class can control it.
-         */
-        public void SetPhysicsEngine( Space provided )
-        {
-            if ( physicsEngine == null )
+            //initialize the physics engine with an optimum number of threads
+            ParallelLooper looper = new ParallelLooper();
+            for ( int i = 0; i < Environment.ProcessorCount; i++ )
             {
-                physicsEngine = provided;
+                looper.AddThread();
             }
+
+            physicsEngine = new Space( looper );
+            game.Services.AddService( typeof( Space ), physicsEngine );
+
+            //initialize a screen manager and provide it to the GameState
+            screenManager = new Screen.ScreenManager( game );
+            game.Components.Add( screenManager );
+            screenManager.Init();
         }
 
 

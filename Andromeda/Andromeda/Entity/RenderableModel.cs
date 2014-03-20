@@ -28,9 +28,10 @@ namespace Andromeda.Entity
         }
 
 
-        public RenderableModel( Game game, string model )
+        public RenderableModel( Game game, string modelID )
         {
-            this.model = game.Content.Load<Model>( model );
+            this.model = Resources.Instance.GetModel( modelID );
+            //this.model = game.Content.Load<Model>( model );
 
             foreach ( ModelMesh mesh in this.model.Meshes )
             {
@@ -38,6 +39,7 @@ namespace Andromeda.Entity
                 {
                     b.LightingEnabled = true;
                     b.PreferPerPixelLighting = true;
+                    b.EnableDefaultLighting();
                 }
             }
         }

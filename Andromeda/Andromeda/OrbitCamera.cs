@@ -128,10 +128,10 @@ namespace GregsCameraClass
             float time = (float) gameTime.ElapsedGameTime.TotalMilliseconds;
 
             // Limit the arc movement.
-            if ( cameraArc > 90.0f )
-                cameraArc = 90.0f;
-            else if ( cameraArc < -90.0f )
-                cameraArc = -90.0f;
+            if ( cameraArc > 80.0f )
+                cameraArc = 80.0f;
+            else if ( cameraArc < -80.0f )
+                cameraArc = -80.0f;
 
             cameraDistance += 0.05f * ( targetCameraDistance - cameraDistance );
 

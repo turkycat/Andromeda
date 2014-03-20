@@ -15,6 +15,7 @@ namespace Andromeda.Entity
     class Asteroid : RenderableModel
     {
         private MobileMesh mesh;
+        //private float mass;
 
         public override Matrix World
         {
@@ -34,13 +35,20 @@ namespace Andromeda.Entity
         }
 
 
-        public Asteroid( Game game ) : base( game, @"Models/asteroid_large1" )
+        public Asteroid( Game game, string modelID, float mass ) : base( game, modelID )
         {
+            //this.mass = mass;
             BEPUutilities.Vector3[] vertices;
             int[] indices;
             ModelDataExtractor.GetVerticesAndIndicesFromModel( model, out vertices, out indices );
-            mesh = new MobileMesh( vertices, indices, BEPUutilities.AffineTransform.Identity, BEPUphysics.CollisionShapes.MobileMeshSolidity.Solid );
-            mesh.AngularVelocity = new BEPUutilities.Vector3( .25f, .6f, .1f );
+            mesh = new MobileMesh( vertices, indices, BEPUutilities.AffineTransform.Identity, BEPUphysics.CollisionShapes.MobileMeshSolidity.Solid, mass );
+
+            mesh.LinearMomentum = new BEPUutilities.Vector3( 0f, 50f, 0f );
+            mesh.AngularVelocity = BEPUutilities.Vector3.Zero;
+            mesh.LinearDamping = 0f;
+            mesh.AngularDamping = 0f;
+            mesh.IsAffectedByGravity = false;
+            //mesh.Mass = mass;
             //GameState.Instance.AddEntity( mesh );
             //collider = new MobileMesh( _model.Meshes.
             //sphere = new Sphere(MathConverter.Convert( Vector3.Zero ), 0.5f, 8.0f );

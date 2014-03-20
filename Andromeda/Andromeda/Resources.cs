@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Graphics;
+using Andromeda.Screen;
 
 namespace Andromeda
 {
@@ -16,6 +18,7 @@ namespace Andromeda
         private static Resources instance;
 
         //private Dictionary<string, Texture2D> textures;
+        private Dictionary<string, Model> models;
         private Dictionary<string, SoundEffect> sounds;
 
 
@@ -40,12 +43,61 @@ namespace Andromeda
             }
         }
 
+
+
+        /**
+         * Adds the given Model to reference dictionary.
+         */
+        public void AddModel( string id, Model model )
+        {
+            if ( id != null && model != null )
+            {
+                models.Add( id, model );
+            }
+        }
+
+
+        /**
+         * retrieves the Model for the given resource id
+         */
+        public Model GetModel( string id )
+        {
+            if ( !models.ContainsKey( id ) ) return null;
+            return models[id];
+        }
+
+
+
+        /**
+         * Adds the given Model to reference dictionary.
+         */
+        public void AddSound( string id, SoundEffect effect )
+        {
+            if ( id != null && effect != null )
+            {
+                sounds.Add( id, effect );
+            }
+        }
+
+
+        /**
+         * retrieves the Model for the given resource id
+         */
+        public SoundEffect GetSound( string id )
+        {
+            if ( !sounds.ContainsKey( id ) ) return null;
+            return sounds[id];
+        }
+
+
+
         /**
          * a hidden constructor
          */
         private Resources()
         {
             sounds = new Dictionary<string, SoundEffect>();
+            models = new Dictionary<string, Model>();
             Random = new Random();
         }
     }

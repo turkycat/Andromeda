@@ -31,18 +31,6 @@ namespace Andromeda
             Content.RootDirectory = "Content";
 
 
-            //build a thread for each processor core and initialize the physics engine with the task executor.
-            ParallelLooper looper = new ParallelLooper();
-            for ( int i = 0; i < Environment.ProcessorCount; i++ )
-            {
-                looper.AddThread();
-            }
-
-            Space physicsEngine = new Space( looper );
-            Services.AddService( typeof( Space ), physicsEngine );
-            GameState.Instance.SetPhysicsEngine( physicsEngine );
-
-
             graphics.PreferredBackBufferWidth = 1280;
             graphics.PreferredBackBufferHeight = 800;
             graphics.ApplyChanges();
@@ -56,11 +44,6 @@ namespace Andromeda
          */
         protected override void Initialize()
         {
-            //initialize a screen manager and provide it to the GameState
-            ScreenManager screenManager = new Screen.ScreenManager( this );
-            GameState.Instance.SetScreenManager( screenManager );
-            Components.Add( screenManager );
-
             base.Initialize();
         }
 
@@ -72,8 +55,17 @@ namespace Andromeda
          */
         protected override void LoadContent()
         {
-            // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch( GraphicsDevice );
+
+            Resources.Instance.AddModel( "universe", Content.Load<Model>( @"Models/universe" ) );
+            Resources.Instance.AddModel( "asteroid_large1", Content.Load<Model>( @"Models/asteroid_large1" ) );
+            Resources.Instance.AddModel( "asteroid_large2", Content.Load<Model>( @"Models/asteroid_large2" ) );
+            Resources.Instance.AddModel( "asteroid_medium1", Content.Load<Model>( @"Models/asteroid_medium1" ) );
+            Resources.Instance.AddModel( "asteroid_medium2", Content.Load<Model>( @"Models/asteroid_medium2" ) );
+            Resources.Instance.AddModel( "asteroid_small1", Content.Load<Model>( @"Models/asteroid_small1" ) );
+            Resources.Instance.AddModel( "asteroid_small2", Content.Load<Model>( @"Models/asteroid_small2" ) );
+
+            GameState.Instance.Initialize( this );
         }
 
 
