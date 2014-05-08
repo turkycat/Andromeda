@@ -22,7 +22,7 @@ namespace Andromeda.Screen
 
         }
 
-        public override void Draw( GameTime gameTime, Camera camera )
+        public override void Draw( GameTime gameTime )
         {
 
         }

@@ -1956,7 +1956,7 @@ Objects:  {
 		}
 		UseMipMap: 0
 		Filename: "pixelated2.png"
-		RelativeFilename: "C:\Users\turkycat\Google Drive\Source\XNA\Andromeda\Textures\pixelated2.png"
+		RelativeFilename: "..\Textures\pixelated2.png"
 	}
 	Texture: "Texture::pixelated2_png", "TextureVideoClip" {
 		Type: "TextureVideoClip"
@@ -1981,7 +1981,7 @@ Objects:  {
 		}
 		Media: "Video::pixelated2_png"
 		FileName: "pixelated2.png"
-		RelativeFilename: "C:\Users\turkycat\Google Drive\Source\XNA\Andromeda\Textures\pixelated2.png"
+		RelativeFilename: "..\Textures\pixelated2.png"
 		ModelUVTranslation: 0,0
 		ModelUVScaling: 1,1
 		Texture_Alpha_Source: "None"

@@ -1949,7 +1949,7 @@ Objects:  {
 		}
 		UseMipMap: 0
 		Filename: "pixelated4.png"
-		RelativeFilename: "C:\Users\turkycat\Google Drive\Source\XNA\Andromeda\Textures\pixelated4.png"
+		RelativeFilename: "..\Textures\pixelated4.png"
 	}
 	Texture: "Texture::pixelated4_png", "TextureVideoClip" {
 		Type: "TextureVideoClip"
@@ -1974,7 +1974,7 @@ Objects:  {
 		}
 		Media: "Video::pixelated4_png"
 		FileName: "pixelated4.png"
-		RelativeFilename: "C:\Users\turkycat\Google Drive\Source\XNA\Andromeda\Textures\pixelated4.png"
+		RelativeFilename: "..\Textures\pixelated4.png"
 		ModelUVTranslation: 0,0
 		ModelUVScaling: 1,1
 		Texture_Alpha_Source: "None"

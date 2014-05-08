@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
-using Andromeda.Entity;
+using Andromeda.GameElement;
 using GregsCameraClass;
 
 namespace Andromeda.Screen
@@ -18,31 +18,36 @@ namespace Andromeda.Screen
         }
 
         //a reference point for the camera class, any screen can modify this property to allow the screen to choose a point of view
-        protected ITargetable ActiveTarget
-        {
-            get;
-            set;
-        }
+        //protected ITargetable ActiveTarget
+        //{
+        //    get;
+        //    set;
+        //}
 
         //a list of models which can be used to store the screen's contents
-        protected List<RenderableModel> models;
+        protected List<RenderableElement> models;
 
         //basic constructor
         public ScreenBase( Game game )
         {
             this.Game = game;
-            this.models = new List<RenderableModel>();
+            this.models = new List<RenderableElement>();
         }
 
         /**
          * returns a list of Entities used by this Screen. Should correspond to items which should exist in the physics environment
          */
-        public List<BEPUphysics.Entities.Entity> GetEntities()
+        public virtual List<BEPUphysics.Entities.Entity> GetEntities()
         {
             List<BEPUphysics.Entities.Entity> toReturn = new List<BEPUphysics.Entities.Entity>();
 
-            foreach ( RenderableModel model in models )
-                toReturn.Add( model.Entity );
+            foreach ( RenderableElement model in models )
+            {
+                if ( model.IsCollidable )
+                {
+                    toReturn.Add( model.Entity );
+                }
+            }
 
             return toReturn;
         }
@@ -54,10 +59,10 @@ namespace Andromeda.Screen
          * 
          * returns the ITargetable item which the camera should focus on while this screen is active
          */
-        public virtual ITargetable GetCameraFocus()
-        {
-            return ActiveTarget;
-        }
+        //public virtual ITargetable GetCameraFocus()
+        //{
+        //    return ActiveTarget;
+        //}
 
 
 
@@ -74,6 +79,6 @@ namespace Andromeda.Screen
          * ABSTRACT
          * calls upon the screen object to draw itself and/or it's entities
          */
-        public abstract void Draw( GameTime gameTime, Camera camera );
+        public abstract void Draw( GameTime gameTime );
     }
 }

@@ -10,6 +10,7 @@ namespace Andromeda
     using Screen;
     using BEPUphysics;
     using BEPUphysics.Threading;
+    using BEPUphysics.CollisionRuleManagement;
 
     /**
      * a singleton class which provides global state information to the game
@@ -27,7 +28,6 @@ namespace Andromeda
 
         //reference to the game
         private Game game;
-
 
 
         /**
@@ -50,7 +50,6 @@ namespace Andromeda
          */
         private GameState()
         {
-            
         }
 
 

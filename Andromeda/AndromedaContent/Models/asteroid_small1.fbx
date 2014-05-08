@@ -1746,7 +1746,7 @@ Objects:  {
 		}
 		UseMipMap: 0
 		Filename: "pixelated5.png"
-		RelativeFilename: "C:\Users\turkycat\Google Drive\Source\XNA\Andromeda\Textures\pixelated5.png"
+		RelativeFilename: "..\Textures\pixelated5.png"
 	}
 	Texture: "Texture::pixelated5_png", "TextureVideoClip" {
 		Type: "TextureVideoClip"
@@ -1771,7 +1771,7 @@ Objects:  {
 		}
 		Media: "Video::pixelated5_png"
 		FileName: "pixelated5.png"
-		RelativeFilename: "C:\Users\turkycat\Google Drive\Source\XNA\Andromeda\Textures\pixelated5.png"
+		RelativeFilename: "..\Textures\pixelated5.png"
 		ModelUVTranslation: 0,0
 		ModelUVScaling: 1,1
 		Texture_Alpha_Source: "None"

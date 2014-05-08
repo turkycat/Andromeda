@@ -15,7 +15,8 @@ namespace Andromeda
     using BEPUphysics.Threading;
     using BEPUphysics;
     using GregsCameraClass;
-    using Andromeda.Entity;
+    using Andromeda.GameElement;
+    using BEPUphysics.CollisionRuleManagement;
 
     public class AndromedaMain : Microsoft.Xna.Framework.Game
     {
@@ -58,12 +59,21 @@ namespace Andromeda
             spriteBatch = new SpriteBatch( GraphicsDevice );
 
             Resources.Instance.AddModel( "universe", Content.Load<Model>( @"Models/universe" ) );
+            Resources.Instance.AddModel( "skybox", Content.Load<Model>( @"Models/skybox" ) );
+            Resources.Instance.AddModel( "redship", Content.Load<Model>( @"Models/redship" ) );
+            Resources.Instance.AddModel( "blueship", Content.Load<Model>( @"Models/blueship" ) );
+            Resources.Instance.AddModel( "missile", Content.Load<Model>( @"Models/missile" ) );
             Resources.Instance.AddModel( "asteroid_large1", Content.Load<Model>( @"Models/asteroid_large1" ) );
             Resources.Instance.AddModel( "asteroid_large2", Content.Load<Model>( @"Models/asteroid_large2" ) );
             Resources.Instance.AddModel( "asteroid_medium1", Content.Load<Model>( @"Models/asteroid_medium1" ) );
             Resources.Instance.AddModel( "asteroid_medium2", Content.Load<Model>( @"Models/asteroid_medium2" ) );
             Resources.Instance.AddModel( "asteroid_small1", Content.Load<Model>( @"Models/asteroid_small1" ) );
             Resources.Instance.AddModel( "asteroid_small2", Content.Load<Model>( @"Models/asteroid_small2" ) );
+
+            Resources.Instance.AddGroup( "asteroid", new CollisionGroup() );
+            Resources.Instance.AddGroup( "ship", new CollisionGroup() );
+            Resources.Instance.AddGroup( "laser", new CollisionGroup() );
+            Resources.Instance.AddGroup( "universe", new CollisionGroup() );
 
             GameState.Instance.Initialize( this );
         }

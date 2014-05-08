@@ -13,7 +13,7 @@ namespace Andromeda.Screen
         private ScreenBase activeScreen;
 
         //a reference to the camera object which will control the focus element of our screens.
-        private Camera camera;
+        //private Camera camera;
 
         //a dictionary of references to the various screens used within the game
         private Dictionary<string, ScreenBase> screens;
@@ -22,7 +22,6 @@ namespace Andromeda.Screen
         public ScreenManager( Game game ) : base( game )
         {
             this.screens = new Dictionary<string,ScreenBase>();
-            camera = new Camera( game.GraphicsDevice );
         }
 
 
@@ -33,7 +32,7 @@ namespace Andromeda.Screen
         public void Init()
         {
             screens.Add( "main", new MainScreen( this.Game ) );
-            screens.Add( "game", new GameScreen( this.Game ) );
+            screens.Add( "game", new SinglePlayerScreen( this.Game ) );
             screens.Add( "pause", new PauseScreen( this.Game ) );
             SetActiveScreen( "game" );
         }
@@ -65,23 +64,23 @@ namespace Andromeda.Screen
                 GameState.Instance.AddEntity( newEntity );
             }
 
-            SetCameraFocusPoint();
+            //SetCameraFocusPoint();
         }
 
-        
+
         /**
          * sets or resets the active focus object for the camera
          */
-        public void SetCameraFocusPoint()
-        {
-            camera.Target = activeScreen.GetCameraFocus();
-        }
+        //public void SetCameraFocusPoint()
+        //{
+        //    camera.Target = activeScreen.GetCameraFocus();
+        //}
+
 
 
         public override void Update( GameTime gameTime )
         {
             activeScreen.Update( gameTime );
-            camera.Update( gameTime );
             base.Update( gameTime );
         }
 
@@ -94,7 +93,7 @@ namespace Andromeda.Screen
          */
         public override void Draw( GameTime gameTime )
         {
-            activeScreen.Draw( gameTime, camera );
+            activeScreen.Draw( gameTime );
             base.Draw( gameTime );
         }
     }

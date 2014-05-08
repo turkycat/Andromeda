@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Andromeda.Screen;
+using BEPUphysics.CollisionRuleManagement;
 
 namespace Andromeda
 {
@@ -20,6 +21,7 @@ namespace Andromeda
         //private Dictionary<string, Texture2D> textures;
         private Dictionary<string, Model> models;
         private Dictionary<string, SoundEffect> sounds;
+        private Dictionary<string, CollisionGroup> collisions;
 
 
         /**
@@ -92,12 +94,36 @@ namespace Andromeda
 
 
         /**
+         * Adds the given Model to reference dictionary.
+         */
+        public void AddGroup( string id, CollisionGroup group )
+        {
+            if ( id != null && group != null )
+            {
+                collisions.Add( id, group );
+            }
+        }
+
+
+        /**
+         * retrieves the Model for the given resource id
+         */
+        public CollisionGroup GetGroup( string id )
+        {
+            if ( !collisions.ContainsKey( id ) ) return null;
+            return collisions[id];
+        }
+
+
+
+        /**
          * a hidden constructor
          */
         private Resources()
         {
             sounds = new Dictionary<string, SoundEffect>();
             models = new Dictionary<string, Model>();
+            collisions = new Dictionary<string, CollisionGroup>();
             Random = new Random();
         }
     }
